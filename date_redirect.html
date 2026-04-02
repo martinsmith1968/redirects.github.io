@@ -1,0 +1,40 @@
+<html>
+<body>
+<script>
+
+// See : https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+//       https://www.w3resource.com/javascript-exercises/javascript-date-exercise-16.php
+
+Date.prototype.getJulianForYear = function() {
+  var start = new Date(this.getFullYear(), 0, 1);
+
+  // Calculate the difference in milliseconds between the provided date and January 1st
+  // Add 1 to consider the current date itself
+  // Divide by the number of milliseconds in a day (86400000) to convert milliseconds to days
+  // Round up to the nearest whole number using Math.ceil()
+  return Math.ceil((this - start + 1) / 86400000);
+}
+
+var currentJulianDay = new Date().getJulianForYear();
+var nextJulianDay    = new Date().getJulianForYear() + 1;
+
+const urlParams = new URLSearchParams(window.location.search);
+
+var target_url = ''
+
+if (urlParams.has('url')) {
+    target_url = urlParams.get('url')
+        .replace('#CURRENT_JULIANDAY#', currentJulianDay)
+        .replace('#NEXT_JULIANDAY#', nextJulianDay)
+        ;
+}
+if (target_url.length == 0) {
+
+    alert('URL cannot be determined');
+} else {
+    console.log('Redirecting to: ' + url);
+    window.location = target_url
+}
+
+</script>
+</body>
