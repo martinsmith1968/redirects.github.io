@@ -22,17 +22,17 @@ const urlParams = new URLSearchParams(window.location.search);
 
 var target_url = ''
 
-if (urlParams.has('url')) {
-    target_url = urlParams.get('url')
+if (urlParams.has('target')) {
+    target_url = urlParams.get('target')
         .replace('#CURRENT_JULIANDAY#', currentJulianDay)
         .replace('#NEXT_JULIANDAY#', nextJulianDay)
         ;
 }
 if (target_url.length == 0) {
 
-    alert('URL cannot be determined');
+    alert('Target URL cannot be determined');
 } else {
-    console.log('Redirecting to: ' + url);
+    console.log('Redirecting to: ' + target_url);
     window.location = target_url
 }
 
