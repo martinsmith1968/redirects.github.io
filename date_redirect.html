@@ -18,18 +18,23 @@ Date.prototype.getJulianForYear = function() {
 var currentJulianDay = new Date().getJulianForYear();
 var nextJulianDay    = new Date().getJulianForYear() + 1;
 
+console.log('currentJulianDay = ' + currentJulianDay);
+console.log('nextJulianDay = ' + nextJulianDay);
+  
 const urlParams = new URLSearchParams(window.location.search);
 
 var target_url = ''
-
 if (urlParams.has('target')) {
     target_url = urlParams.get('target')
         .replace('#CURRENT_JULIANDAY#', currentJulianDay)
         .replace('#NEXT_JULIANDAY#', nextJulianDay)
         ;
+    console.log('target_url = ' + target_url);
+    target_url = decodeURI(target_url);
+    console.log('target_url = ' + target_url);
 }
-if (target_url.length == 0) {
 
+if (target_url.length == 0) {
     alert('Target URL cannot be determined');
 } else {
     console.log('Redirecting to: ' + target_url);
